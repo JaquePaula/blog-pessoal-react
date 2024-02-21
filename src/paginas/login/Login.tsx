@@ -5,7 +5,7 @@ import { Link, useNavigate } from 'react-router-dom';
 
 import { AuthContext } from '../../contexts/AuthContext';
 import UsuarioLogin from '../../models/UsuarioLogin';
-import { RotatingLines } from 'react-loader-spinner';
+import loading from '../../assets/loading.gif';
 
 function Login() {
   const navigate = useNavigate();
@@ -66,13 +66,7 @@ function login(e: ChangeEvent<HTMLFormElement>) {
             />
           </div>
           <button  type='submit' className="rounded bg-indigo-400 hover:bg-indigo-900 text-white w-1/2 py-2 flex justify-center">
-           {isLoading ? <RotatingLines
-            strokeColor="white"
-            strokeWidth="5"
-            animationDuration="0.75"
-            width="24"
-            visible={true}
-          /> :
+           {isLoading ? <img src={loading} alt= '' width="35px" /> :
             <span>Entrar</span>}
           </button>
 

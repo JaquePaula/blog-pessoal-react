@@ -1,63 +1,62 @@
-import { createContext, ReactNode, useState } from "react"
+import { createContext, ReactNode, useState } from "react";
 
-import UsuarioLogin from "../models/UsuarioLogin"
-import { login } from "../services/Services"
-
+import UsuarioLogin from "../models/UsuarioLogin";
+import { login } from "../services/Services";
 
 interface AuthContextProps {
-    usuario: UsuarioLogin
-    handleLogout(): void
-    handleLogin(usuario: UsuarioLogin): Promise<void>
-    isLoading: boolean
+  usuario: UsuarioLogin;
+  handleLogout(): void;
+  handleLogin(usuario: UsuarioLogin): Promise<void>;
+  isLoading: boolean;
 }
 
 interface AuthProviderProps {
-    children: ReactNode
+  children: ReactNode;
 }
 
-export const AuthContext = createContext({} as AuthContextProps)
+export const AuthContext = createContext({} as AuthContextProps);
 
 export function AuthProvider({ children }: AuthProviderProps) {
+  const [usuario, setUsuario] = useState<UsuarioLogin>({
+    id: 0,
+    nome: "",
+    usuario: "",
+    senha: "",
+    foto: "",
+    token: "",
+  });
 
-    const [usuario, setUsuario] = useState<UsuarioLogin>({
-        id: 0,
-        nome: "",
-        usuario: "",
-        senha: "",
-        foto: "",
-        token: ""
-    })
+  const [isLoading, setIsLoading] = useState(false);
 
-    const [isLoading, setIsLoading] = useState(false)
-
-    async function handleLogin(userLogin: UsuarioLogin) {
-        setIsLoading(true)
-        try {
-            await login(`/usuarios/logar`, userLogin, setUsuario)
-            alert("Usuário logado com sucesso")
-            setIsLoading(false)
-
-        } catch (error) {
-            console.log(error)
-            alert("Dados do usuário inconsistentes")
-            setIsLoading(false)
-        }
+  async function handleLogin(userLogin: UsuarioLogin) {
+    setIsLoading(true);
+    try {
+      await login(`/usuarios/logar`, userLogin, setUsuario);
+      alert("Usuário logado com sucesso");
+      setIsLoading(false);
+    } catch (error) {
+      console.log(error);
+      alert("Dados do usuário inconsistentes");
+      setIsLoading(false);
     }
+  }
 
-    function handleLogout() {
-        setUsuario({
-            id: 0,
-            nome: "",
-            usuario: "",
-            senha: "",
-            foto: "",
-            token: ""
-        })
-    }
+  function handleLogout() {
+    setUsuario({
+      id: 0,
+      nome: "",
+      usuario: "",
+      senha: "",
+      foto: "",
+      token: "",
+    });
+  }
 
-    return (
-        <AuthContext.Provider value={{ usuario, handleLogin, handleLogout, isLoading }}>
-            {children}
-        </AuthContext.Provider>
-    )
+  return (
+    <AuthContext.Provider
+      value={{ usuario, handleLogin, handleLogout, isLoading }}
+    >
+      {children}
+    </AuthContext.Provider>
+  );
 }

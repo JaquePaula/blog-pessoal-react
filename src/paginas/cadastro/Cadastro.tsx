@@ -1,9 +1,9 @@
-import  { ChangeEvent, useEffect, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Usuario from "../../models/Usuario";
 import { cadastrarUsuario } from "../../services/Services";
 import "./Cadastro.css";
-import { RotatingLines } from "react-loader-spinner";
+import loading from "../../assets/loading.gif";
 
 function Cadastro() {
   const [isLoading, setIsLoading] = useState(false);
@@ -158,18 +158,11 @@ function Cadastro() {
               Cancelar
             </button>
             <button
-              className="rounded text-white bg-indigo-400 hover:bg-indigo-900 w-1/2 py-2"
               type="submit"
+              className="rounded bg-indigo-400 hover:bg-indigo-900 text-white w-1/2 py-2 flex justify-center"
             >
-              {isLoading ? (
-                <RotatingLines
-                  strokeColor="white"
-                  strokeWidth="5"
-                  animationDuration="0.75"
-                  width="24"
-                  visible={true}
-                />
-              ) : (
+              {isLoading ? <img src={loading} alt= '' width="35px" />
+              : (
                 <span>Cadastrar</span>
               )}
             </button>
