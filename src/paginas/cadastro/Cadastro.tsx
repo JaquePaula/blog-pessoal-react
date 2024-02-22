@@ -95,7 +95,7 @@ function Cadastro() {
             />
           </div>
           <div className="flex flex-col w-full">
-            <label htmlFor="usuario">Usuario</label>
+            <label htmlFor="usuario">E-mail</label>
             <input
               type="text"
               id="usuario"
@@ -152,14 +152,14 @@ function Cadastro() {
           </div>
           <div className="flex justify-around w-full gap-8">
             <button
-              className="rounded text-white bg-red-400 hover:bg-red-700 w-1/2 py-2"
+              className="rounded text-red-700 bg-gray-100 hover:bg-gray-200 border-2 border-red-700 w-1/2 py-2"
               onClick={back}
             >
               Cancelar
             </button>
             <button
               type="submit"
-              className="rounded bg-indigo-400 hover:bg-indigo-900 text-white w-1/2 py-2 flex justify-center"
+              className="rounded  text-teal-600 border-2 border-teal-600  bg-gray-100  hover:bg-gray-200 w-1/2 py-2 flex justify-center"
             >
               {isLoading ? <img src={loading} alt= '' width="35px" />
               : (
@@ -174,3 +174,5 @@ function Cadastro() {
 }
 
 export default Cadastro;
+
+

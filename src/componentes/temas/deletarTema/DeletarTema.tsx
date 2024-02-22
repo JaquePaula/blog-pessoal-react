@@ -72,19 +72,19 @@ function DeletarTema() {
       </p>
 
       <div className="border flex flex-col rounded-2xl overflow-hidden justify-between">
-        <header className="py-2 px-6 bg-purple-700  text-white font-bold text-2xl">
+        <header className="py-2 px-6  bg-green-200 text-gray-800 font-bold text-2xl">
           Tema
         </header>
         <p className="p-8 text-3xl bg-slate-200 h-full"> {tema.descricao}</p>
         <div className="flex">
           <button
-            className="text-slate-100 bg-red-400 hover:bg-red-600 w-full py-2"
+            className="text-red-700 bg-gray-100 hover:bg-gray-200 w-full py-2"
             onClick={retornar}
           >
             Não
           </button>
           <button
-            className="w-full text-slate-100 bg-indigo-400 hover:bg-indigo-600 flex items-center justify-center"
+            className="w-full text-teal-600 bg-gray-100 border-l hover:bg-gray-200 flex items-center justify-center"
             onClick={deletarTema}
           >
             Sim
