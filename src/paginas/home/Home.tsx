@@ -1,8 +1,15 @@
 
+import { useNavigate } from 'react-router-dom';
 import homeLogo from '../../assets/home.jpeg'
+import ListaPostagens from '../../componentes/postagens/listaPostagem/ListaPostagem';
+import ModalPostagem from '../../componentes/postagens/modalPostagem/ModalPostagem';
 import './Home.css';
 
 function Home() {
+  const navigate = useNavigate();
+
+
+
     return (
         <>
         <div className="flex justify-center min-h-[79vh]">
@@ -12,8 +19,9 @@ function Home() {
               <p className='text-xl'>Expresse aqui seus roms roms e miaus! </p>
   
               <div className="flex justify-around gap-4">
+                <ModalPostagem />
               
-                <button className='rounded bg-amber-500 hover:bg-amber-600   text-gray-800 font-semibold py-2 px-4'>Ver postagens</button>
+                <button onClick={() => navigate("/postagens")} className='rounded bg-amber-500 hover:bg-amber-600   text-gray-800 font-semibold py-2 px-4'>Ver postagens</button>
               </div>
             </div>
   
@@ -23,7 +31,7 @@ function Home() {
             </div>
           </div>
         </div>
-        
+        <ListaPostagens />
       </>
     );
 }
