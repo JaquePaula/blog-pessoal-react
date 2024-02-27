@@ -8,8 +8,6 @@ import './Home.css';
 function Home() {
   const navigate = useNavigate();
 
-
-
     return (
         <>
         <div className="flex justify-center min-h-[79vh]">

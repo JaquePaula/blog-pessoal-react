@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../../../contexts/AuthContext";
 import { buscar } from "../../../services/Services";
 import loading from "../../../assets/loading.gif";
+import { toastAlerta } from "../../../util/ToastAlerta";
 
 function ListaTemas() {
   const [temas, setTemas] = useState<Tema[]>([]);
@@ -23,7 +24,7 @@ function ListaTemas() {
       // eslint-disable-next-line @typescript-eslint/no-explicit-any
     } catch (error: any) {
       if (error.toString().includes("403")) {
-        alert("O token expirou, favor logar novamente");
+        toastAlerta('O token expirou, favor logar novamente', 'info')
         handleLogout();
       }
     }
@@ -31,7 +32,7 @@ function ListaTemas() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado");
+      toastAlerta('Você precisa estar logado', 'info');
       navigate("/login");
     }
   }, [token]);

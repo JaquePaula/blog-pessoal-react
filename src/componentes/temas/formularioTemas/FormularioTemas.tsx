@@ -3,6 +3,7 @@ import { atualizar, buscar, cadastrar } from "../../../services/Services";
 import { useNavigate, useParams } from "react-router-dom";
 import Tema from "../../../models/Tema";
 import { AuthContext } from "../../../contexts/AuthContext";
+import { toastAlerta } from "../../../util/ToastAlerta";
 
 function FormularioTemas() {
   const [tema, setTema] = useState<Tema>({} as Tema);
@@ -48,18 +49,18 @@ function FormularioTemas() {
           },
         });
 
-        alert("Tema atualizado com sucesso");
+        toastAlerta('Tema atualizado com sucesso', 'sucesso')
         retornar();
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         if (error.toString().includes("403")) {
-          alert("O token expirou, favor logar novamente");
+          toastAlerta('O token expirou, favor logar novamente', 'info')
           handleLogout();
         } else {
-          alert("Erro ao atualizar o Tema");
-        }
+          toastAlerta('Erro ao atualizar o Tema', 'erro')
       }
+    }
     } else {
       try {
         await cadastrar(`/temas`, tema, setTema, {
@@ -68,15 +69,15 @@ function FormularioTemas() {
           },
         });
 
-        alert("Tema cadastrado com sucesso");
+        toastAlerta('Tema cadastrado com sucesso', 'sucesso')
 
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
       } catch (error: any) {
         if (error.toString().includes("403")) {
-          alert("O token expirou, favor logar novamente");
+          toastAlerta('O token expirou, favor logar novamente', 'info')
           handleLogout();
         } else {
-          alert("Erro ao cadastrado o Tema");
+          toastAlerta('Erro ao cadastrado o Tema', 'erro')
         }
       }
     }
@@ -90,7 +91,7 @@ function FormularioTemas() {
 
   useEffect(() => {
     if (token === "") {
-      alert("Você precisa estar logado");
+      toastAlerta('Você precisa estar logado', 'info');
       navigate("/login");
     }
   }, [token]);
