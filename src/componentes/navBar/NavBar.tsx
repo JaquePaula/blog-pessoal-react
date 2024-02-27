@@ -36,20 +36,23 @@ function NavBar() {
             <Link to="/cadastroTema" className="text-amber-700 hover:underline">
               Cadastrar tema
             </Link>
-            <div className="text-amber-700 hover:underline">Perfil</div>
+          <Link to='/perfil' className="text-amber-700 hover:underline">Perfil</Link>
             <Link
               to=""
               onClick={logout}
-              className="text-amber-700 hover:underline"
-            >
-              Sair
+              className="text-amber-700 hover:underline" >Sair
             </Link>
           </div>
         </div>
       </div>
     );
   }
-  return <>{navbarComponent}</>;
+
+  return (
+  <>
+  {navbarComponent}
+  </>
+  )
 }
 
 export default NavBar;
